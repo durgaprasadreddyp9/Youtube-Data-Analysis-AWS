@@ -3,9 +3,13 @@ A scalable system to ingest, process, and analyze YouTube trending video data us
 
 Goals:
 Ingest data from multiple sources
+
 Store data in AWS S3
+
 Transform data using AWS Glue
+
 Query with AWS Athena
+
 Visualize insights with QuickSight
 
 AWS Services Used:
