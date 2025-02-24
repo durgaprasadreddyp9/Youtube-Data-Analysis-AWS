@@ -3,14 +3,14 @@ import pandas as pd
 import urllib.parse
 import os
 
-os_input_s3_cleansed_layer = os.environ['s3_cleansed_layer']
-os_input_glue_catalog_db_name = os.environ['glue_catalog_db_name']
-os_input_glue_catalog_table_name = os.environ['glue_catalog_table_name']
+os_input_s3_cleansed = os.environ['s3_cleansed']
+os_input_glue_catalog_db = os.environ['glue_catalog_db']
+os_input_glue_catalog_table = os.environ['glue_catalog_table']
 os_input_write_data_operation = os.environ['write_data_operation']
 
 
 def lambda_handler(event, context):
-    # Get the object from the event and show its content type
+    
     bucket = event['Records'][0]['s3']['bucket']['name']
     key = urllib.parse.unquote_plus(event['Records'][0]['s3']['object']['key'], encoding='utf-8')
     try:
@@ -24,10 +24,10 @@ def lambda_handler(event, context):
         # Write to S3
         wr_response = wr.s3.to_parquet(
             df=df_step_1,
-            path=os_input_s3_cleansed_layer,
+            path=os_input_s3_cleansed,
             dataset=True,
-            database=os_input_glue_catalog_db_name,
-            table=os_input_glue_catalog_table_name,
+            database=os_input_glue_catalog_db,
+            table=os_input_glue_catalog_table,
             mode=os_input_write_data_operation
         )
 
