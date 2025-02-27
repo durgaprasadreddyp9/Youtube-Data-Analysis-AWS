@@ -1,4 +1,4 @@
-import awswrangler as wr
+import awsSDK as wr
 import pandas as pd
 import urllib.parse
 import os
